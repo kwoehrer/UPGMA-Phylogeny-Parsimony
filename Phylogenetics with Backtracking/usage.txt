@@ -1,0 +1,22 @@
+How to use:
+1. Create an inputFile.txt
+	a. Format for input file is as follows
+		(integer for number of species) (integer for number of traits in all species)
+		(Species 1 String Name) 0 1 0 1 0 1 
+		(Species 2 String Name) 1 0 1 0 1 0
+		...
+		(Species n String name) 1 1 1 1 1 1
+	b. Possible common errors creating the input file:
+		-Having a space after integer on first line
+		-Species not all having the same number of traits
+		-Not enough species are present
+		-Too many species are present
+2. Run the MainMethod CLI(Command line interface)
+	a. Proper usage is java MainMethod inputFile.txt
+	b. Follow prompts on the command line.
+	c. If there are a large number of traits/species, then it is recommended to just perform UPGMA tree creation and not to show parsimony.
+		This only occurs with large number of species and/or traits.
+3. Access the outputFile.txt
+	a. Should be present in the directory in which you accessed the CLI
+	b. github output.txt files dont appear to be showing what the .txt file looks like in notepad.
+		If you discover any other .txt file readers that are also not displaying correctly then please send me a message!
