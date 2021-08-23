@@ -12,7 +12,9 @@ The goal of this program is to generate the most parsiminious phylogenetic tree 
   In other words, the tree generated is the tree with maximum parsimony.
   
   To learn more about UPGMA visit https://en.wikipedia.org/wiki/UPGMA
+  
   To learn more about parsimony visit https://en.wikipedia.org/wiki/Maximum_parsimony_(phylogenetics)
+  
   To learn more about phylogenetic trees visit https://www.nature.com/scitable/topicpage/reading-a-phylogenetic-tree-the-meaning-of-41956/
   # How To Run
 	1. Create an inputFile.txt
