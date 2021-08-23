@@ -22,7 +22,6 @@ How to use:
 		c. Use the command "java -jar phylogeneticTreeCLI.jar <inputFileName.txt>"
 		d. Follow prompts on the command line.
 		e. If there are a large number of traits/species, then it is recommended to just perform UPGMA tree creation and not to show parsimony.
-			This only occurs with large number of species and/or traits.
 	3. Access the outputFile.txt
 		a. Output file location will be shown on the last line of the CMI. You can access your file here.
 			-Default location is the Phylogeny folder
