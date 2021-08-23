@@ -337,6 +337,9 @@ public class RootedTree {
             }
             treeDone = true;
         } while (!treeDone);
+        
+        //Converts null chars in char array into ' ' chars
+        replaceNullChar(treeAsCharArr);
 
         // Converts the charArr(the tree) to a String
         outputTree += Output.multipleCharsToString('-', widthOfTree) + "\n";
@@ -790,6 +793,21 @@ public class RootedTree {
      */
     public boolean getShowParsimony() {
         return this.showParsimony;
+    }
+    
+    /**
+     * This method converts all null characters into ' ' characters so that text editors properly
+     * display the charArr when converted to a string.
+     * @param charArr An array of an array of chars
+     */
+    private static void replaceNullChar(char[][] charArr) {
+        for(int i = 0; i < charArr.length; i++) {
+            for(int j = 0; j < charArr[i].length; j++) {
+                if(charArr[i][j] == 0) {
+                    charArr[i][j] = ' ';
+                }
+            }
+        }
     }
 
 }
