@@ -1,7 +1,6 @@
 # Phylogeny
 UPGMA Phylogeny Program With Optional Parsimony Capabilities
-
-
+# ABOUT
   This program utilizes a UPGMA (unweighted pair group method with arithmetic mean) clustering method to generate a phylogenetic tree.
 	The user can specify if they want the trait states of each ancestor node of the tree to be determined as well as the parsimony value of the tree.
 	The goal of this program is to generate the most parsiminious phylogenetic tree while utilizing heuristics to reduce computation time.
@@ -11,4 +10,7 @@ UPGMA Phylogeny Program With Optional Parsimony Capabilities
   The evolutionary tree constructed is simply a hypothesis of how evolution may have occurred based off of trait presence.
   The tree generated is the tree with the least number of evolutionary steps (aka mutations) between species and their ancestors.
   In other words, the tree generated is the tree with maximum parsimony.
+  
+  # How To Run
+
   
