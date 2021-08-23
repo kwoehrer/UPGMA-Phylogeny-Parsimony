@@ -303,7 +303,7 @@ public class RootedTree {
     public String toString() {
         String outputTree = "";
         boolean treeDone = false;
-        char[][] treeToString = null;
+        char[][] treeAsCharArr = null;
         // branchIncreaser is used in case the width of our "String tree" char arr is not big enough
         int branchIncreaser = 0;
 
@@ -312,18 +312,18 @@ public class RootedTree {
         this.width = widthOfTree;
         // catch java.lang.ArrayIndexOutOfBoundsException
         do {
-            treeToString = new char[heightOfRoot * (this.branchLength + 1)][widthOfTree];
+            treeAsCharArr = new char[heightOfRoot * (this.branchLength + 1)][widthOfTree];
             // Inserts the root onto the tree along with its branchs
             String rootStr = "Root: " + this.getRoot().getName();
             this.getRoot().setLocationOnTree(0, widthOfTree / 2);
-            this.insertStringIntoCharArr(rootStr, 0, widthOfTree / 2, treeToString);
-            this.insertHeight(this.getRoot().getHeight(), treeToString);
-            this.insertBranch(this.getRoot(), treeToString);
+            this.insertStringIntoCharArr(rootStr, 0, widthOfTree / 2, treeAsCharArr);
+            this.insertHeight(this.getRoot().getHeight(), treeAsCharArr);
+            this.insertBranch(this.getRoot(), treeAsCharArr);
             // Inserts all descendants of the root into the char array (AKA all species)
             // Try block used to catch if we need to make width of tree (char array) bigger to fit
             // tree
             try {
-                this.insertDescendantsIntoCharArr(this.getRoot(), treeToString);
+                this.insertDescendantsIntoCharArr(this.getRoot(), treeAsCharArr);
             } catch (ArrayIndexOutOfBoundsException e) {
                 e.printStackTrace();
                 widthOfTree = heightOfRoot * ((this.branchLength + ++branchIncreaser)
@@ -333,18 +333,17 @@ public class RootedTree {
             }
             // Prints out the height, left aligned, on the line where species are shown
             for (int i = this.getRoot().getHeight() - 2; i >= 0; i--) {
-                insertHeight((i + 1), treeToString);
+                insertHeight((i + 1), treeAsCharArr);
             }
             treeDone = true;
         } while (!treeDone);
-        
         //Converts null chars in char array into ' ' chars
         replaceNullChar(treeAsCharArr);
 
         // Converts the charArr(the tree) to a String
         outputTree += Output.multipleCharsToString('-', widthOfTree) + "\n";
-        for (int i = 0; i < treeToString.length; i++) {
-            outputTree += new String(treeToString[i]) + "\n";
+        for (int i = 0; i < treeAsCharArr.length; i++) {
+            outputTree += new String(treeAsCharArr[i]) + "\n";
         }
         outputTree += Output.multipleCharsToString('-', widthOfTree) + "\n";
 

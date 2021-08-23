@@ -64,7 +64,7 @@ public class Input {
      * @return
      */
     public static Species[] transposeFile(String[] args) {
-        System.out.println("Transposing Input File...");
+        System.out.println("Transposing Input File \"" + args[0] + "\"...");
         Species[] descendants = null;
         Scanner scnr = null;
         File file = new File(args[0]);

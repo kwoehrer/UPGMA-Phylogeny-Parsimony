@@ -2,7 +2,6 @@
 package phylogenetics;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 ///////////////////////// TOP OF FILE COMMENT BLOCK ////////////////////////////
 //

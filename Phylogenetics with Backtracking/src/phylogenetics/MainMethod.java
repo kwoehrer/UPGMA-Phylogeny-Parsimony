@@ -67,6 +67,7 @@ public class MainMethod {
 
         if (descendantArr == null) {
             System.out.println("Failure to transpose input file. Exiting program now.");
+            scnr.close();
             return;
         }
 
@@ -116,10 +117,6 @@ public class MainMethod {
         } while (!isOutputComplete);
 
         scnr.close();
-
-        System.out.println("Complete. Your file is named \"" + fileName
-            + ".txt\". Please check for your file in the appropriate directory.");
-
     }
 
 }

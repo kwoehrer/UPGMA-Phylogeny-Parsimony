@@ -77,6 +77,8 @@ public class Output {
             }
         }
         
+        System.out.println("Complete. Your file is named \"" + fileName
+            + ".txt\". Please check for your file at " + outputFile.getAbsolutePath());
         return success;
     }
     /**
