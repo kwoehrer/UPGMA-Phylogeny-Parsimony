@@ -2,7 +2,7 @@ package phylogenetics;
 
 ///////////////////////// TOP OF FILE COMMENT BLOCK ////////////////////////////
 //
-//Title: UPGMA based Phylogenetic Tree Creator
+//Title: UPGMA-Based Phylogenetic Tree Creator
 //
 //Author: Krischan Woehrer
 //Email: kwoehrer@wisc.edu
