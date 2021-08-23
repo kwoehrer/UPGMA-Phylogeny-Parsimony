@@ -1,8 +1,0 @@
-7 5
-Alligator 1 0 0 0 1
-Bat 1 1 1 0 0
-Croc 1 0 1 0 1
-Dinosaur 1 1 0 0 1
-Elephant 1 1 0 1 1
-Flamingo 1 0 0 1 1
-Giraffe 0 0 0 0 1
