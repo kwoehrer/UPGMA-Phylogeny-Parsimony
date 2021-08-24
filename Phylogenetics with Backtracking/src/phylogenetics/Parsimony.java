@@ -21,6 +21,12 @@ import java.util.ArrayList;
 //
 /////////////////////////////// 80 COLUMNS WIDE /////////////////////////////////**
 
+/**
+ * This class contains the methods responsible for determining the maximum parsimony tree based
+ * off of the trees ancestor nodes and their respective possible trait states.
+ *
+ * @author Krischan Woehrer
+ */
 public class Parsimony {
 
     private static int[] indexOfMinimumParsimonyTree;
@@ -29,10 +35,10 @@ public class Parsimony {
 
     /**
      * This method takes a rooted tree with ancestor nodes that have an undetermined trait state and
-     * determines the trait states that will result in minimum parsimony of the tree.
+     * determines the optimal trait states that will result in maximum parsimony of the tree.
      * 
-     * @param tree
-     * @return
+     * @param tree A rooted tree containining species and their ancestors.
+     * @return The parsimony score of the maximum parsimony tree.
      */
     public static int findMostParsimoniousTree(RootedTree tree) {
         int numOfAncestors = tree.size() - tree.getInitialSpecies().size();
@@ -94,29 +100,26 @@ public class Parsimony {
      */
     private static void maximumLikelyHoodTraitStates(Species[] ancestorNodes) {
         // Can only determine the traits in this way for an ancestor node with a height of greater
-        // than 3 as these
+        // than 3 as these ancestor nodes have at least 3 or more initial descendant species.
         for (int i = 0; i < ancestorNodes.length; i++) {
             if (ancestorNodes[i].getHeight() > 2) {
                 // Finds likely trait state
                 int[] likelyTraitState = findLikelyTraitState(ancestorNodes[i]);
                 ancestorNodes[i].setTraits(likelyTraitState);
                 // Matches trait state to a possible trait state and returns index of that possible
-                // trait state
-                // Adds this index to its appropriate index in indexOfMinimumParsimonyTree
+                // trait state.
+                // Adds this index to its appropriate index in indexOfMinimumParsimonyTree.
                 indexOfMinimumParsimonyTree[i] =
                     getTraitStateIndex(likelyTraitState, ancestorNodes[i]);
             }
         }
 
-        // Determine most likely traits for ancestor nodes with a height of 2. This method uses the
-        // ancestor of
-        // this ancestor node as we cannot infer anything from an ancestor node with only two
-        // descendants.
+        // Determines most likely traits for ancestor nodes with a height of 2. This method uses the
+        // ancestor of this ancestor node to make this inference as we cannot infer anything from an
+        // ancestor node with only two descendants.
         // We cannot do so as the ancestor node trait states are both equally likely and either
-        // option would increase
-        // parsimony score of the tree by 1. By keeping the trait value the same as the trait value
-        // in ancestor of this
-        // ancestor node, we avoid adding another parsimony score.
+        // option would increase parsimony score of the tree by 1. By keeping the trait value the same as the trait value
+        // of the ancestor of this ancestor node, we avoid adding another an extra mutation/parsimony score.
         for (int i = 0; i < ancestorNodes.length; i++) {
             if (ancestorNodes[i].getHeight() == 2) {
                 int[] currAncestorNodeTraits = ancestorNodes[i].getTraits();
