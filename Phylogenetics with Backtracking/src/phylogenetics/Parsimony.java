@@ -47,8 +47,7 @@ public class Parsimony {
         // initial descendants
         // Note: This will not find the most parsiminious tree but drastically reduces the time to
         // calculate the most parsimonious tree by accelerating the rate at which the backtracking
-        // algorithm
-        // performs
+        // algorithm performs
         maximumLikelyHoodTraitStates(ancestorNodes);
 
         // Finds optimal trait states of ancestor nodes
@@ -212,10 +211,10 @@ public class Parsimony {
     }
 
     /**
-     * This method finds the index of a specified trait state in a species possible trait state array
-     * @param traitState
-     * @param species
-     * @return
+     * This method finds the index of a specified trait state in a species possible trait state array.
+     * @param traitState The specified trait state.
+     * @param species The species which contains its associated trait states.
+     * @return Returns the index of the possible trait state that is identical to the specified trait state.
      */
     private static int getTraitStateIndex(int[] traitState, Species species) {
 
@@ -292,11 +291,14 @@ public class Parsimony {
     }
 
     /**
-     * This method calculates the parsimony score of the entire tree. It works by calculating
-     * the parsimony score of each ancestor node to its descendants.
+     * This method calculates the parsimony score of the speciesArr. It works by calculating
+     * the parsimony score of each ancestor node to its descendants. If the indexToIterateFrom is
+     * 0, then the parsimony score is calculated for the entire rooted tree. If the indexToIterateFrom
+     * is greater than 0, then a partial parsimony score is calculated based on the species in the
+     * species array.
      * @see Species.getParsimonyScoreToDescendants for information on how parsimony is calculated.
-     * @param speciesArr
-     * @param indexToIterateFrom
+     * @param speciesArr An array of species (ancestor nodes in scope of this program)
+     * @param indexToIterateFrom The index in speciesArr to start calculating parsimony from.
      * @return int parsimony score from indexToIterate from until end of speciesArr
      */
     private static int getParsimonyScore(Species[] speciesArr, int indexToIterateFrom) {
