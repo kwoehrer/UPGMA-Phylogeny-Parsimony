@@ -401,8 +401,6 @@ public class RootedTree {
 
     /**
      * This method inserts a string into a char array and centers it in at a specified index in a charArr.
-     * TODO: Possible solution for when names get too long/tree gets too big, throw exception in this method
-     *      and implement some dynamic programming (maybe back tracking??) to re-adjust how far apart species are on the charArr
      * @param stringToInsert A string to insert into the char array.
      * @param currentRow The row to insert the string.
      * @param centerOfWordLocation The column to center the string around.
