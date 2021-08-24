@@ -19,7 +19,7 @@ The goal of this program is to generate the most parsiminious phylogenetic tree 
   # How To Run
 	1. Create an inputFile.txt
 		a. Format for input file is as follows
-			(integer for number of species) (integer for number of traits in all species)
+			(integer for number of species) (integer for number of traits being compared (per species))
 			(Species 1 String Name) 0 1 0 1 0 1 
 			(Species 2 String Name) 1 0 1 0 1 0
 			...
