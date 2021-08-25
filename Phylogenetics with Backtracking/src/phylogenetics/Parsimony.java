@@ -8,10 +8,7 @@ import java.util.ArrayList;
 // Title: UPGMA based Phylogenetic Tree Creator
 //
 // Author: Krischan Woehrer
-// Email: kwoehrer@wisc.edu
-//
-///////////////////////////////// NOTES ////////////////////////////////////////
-//
+// Email: kwoehrer@uwm.edu
 //
 ///////////////////////////////// CITATIONS ////////////////////////////////////
 //
@@ -29,9 +26,9 @@ import java.util.ArrayList;
  */
 public class Parsimony {
 
-    private static int[] indexOfMinimumParsimonyTree;
-    private static int[] indexOfAncestorTracker;
-    private static int minParsimonyScore;
+    private static int[] indicesOfAncestorsTraitStatesInMaximumParsimonyTree;
+    private static int[] indiciesOfAncestorsTraitStatesTracker;
+    private static int smallestParsimonyScore;
 
     /**
      * This method takes a rooted tree with ancestor nodes that have an undetermined trait state and
@@ -43,9 +40,9 @@ public class Parsimony {
     public static int findMostParsimoniousTree(RootedTree tree) {
         int numOfAncestors = tree.size() - tree.getInitialSpecies().size();
         Species[] ancestorNodes = new Species[numOfAncestors];
-        indexOfMinimumParsimonyTree = new int[numOfAncestors];
-        indexOfAncestorTracker = new int[numOfAncestors];
-        minParsimonyScore = Integer.MAX_VALUE;
+        indicesOfAncestorsTraitStatesInMaximumParsimonyTree = new int[numOfAncestors];
+        indiciesOfAncestorsTraitStatesTracker = new int[numOfAncestors];
+        smallestParsimonyScore = Integer.MAX_VALUE;
 
         // Inserts all ancestor nodes into the species array ancestorNodes
         findAncestorNodes(tree.getRoot(), ancestorNodes, 0);
@@ -61,7 +58,7 @@ public class Parsimony {
         // Changes the actual trait array in the species object to its optimal configuration
         changeTreeTraitsToMinPars(ancestorNodes);
 
-        return minParsimonyScore;
+        return smallestParsimonyScore;
     }
 
     /**
@@ -109,7 +106,7 @@ public class Parsimony {
                 // Matches trait state to a possible trait state and returns index of that possible
                 // trait state.
                 // Adds this index to its appropriate index in indexOfMinimumParsimonyTree.
-                indexOfMinimumParsimonyTree[i] =
+                indicesOfAncestorsTraitStatesInMaximumParsimonyTree[i] =
                     getTraitStateIndex(likelyTraitState, ancestorNodes[i]);
             }
         }
@@ -133,12 +130,12 @@ public class Parsimony {
                 // Matches trait state to a possible trait state and returns index of that possible
                 // trait state
                 // Adds this index to its appropriate index in indexOfMinimumParsimonyTree
-                indexOfMinimumParsimonyTree[i] =
+                indicesOfAncestorsTraitStatesInMaximumParsimonyTree[i] =
                     getTraitStateIndex(currAncestorNodeTraits, ancestorNodes[i]);
             }
         }
-        // Store minimum parsimony score
-        minParsimonyScore = getParsimonyScore(ancestorNodes, 0);
+        // Store smallest parsimony score
+        smallestParsimonyScore = getParsimonyScore(ancestorNodes, 0);
     }
 
     /**
@@ -257,7 +254,7 @@ public class Parsimony {
         // speciesIndex
         for (int i = 0; i < currentSpecies.getPossibleTraitStates().length; i++) {
             currentSpecies.setTraits(currentSpecies.getPossibleTraitStates()[i]);
-            indexOfAncestorTracker[speciesIndex] = i;
+            indiciesOfAncestorsTraitStatesTracker[speciesIndex] = i;
 
             int currParsimonyScore = getParsimonyScore(speciesArr, speciesIndex);
             // Calculate parsimony and store the parsimony and its related data into the method
@@ -267,16 +264,16 @@ public class Parsimony {
             if (speciesIndex == 0) {
                 // Compares to minimum parsimony score, if smaller we change minimum score and store
                 // the index of the trait states.
-                if (currParsimonyScore <= minParsimonyScore) {
-                    minParsimonyScore = currParsimonyScore;
-                    indexOfMinimumParsimonyTree = indexOfAncestorTracker.clone();
+                if (currParsimonyScore <= smallestParsimonyScore) {
+                    smallestParsimonyScore = currParsimonyScore;
+                    indicesOfAncestorsTraitStatesInMaximumParsimonyTree = indiciesOfAncestorsTraitStatesTracker.clone();
                     System.out.println("~~!!~~!!~~!!~~!!New Minimum Parsimony Tree found at index " + i + " of the root species!!~~!!~~!!~~!!~~");
                 }
             }
             // Allows for backtracking, if at any point the partial tree has a parsimony score
             // greater than the current minimum parsimony score of a full tree, stop iterating this path and
             // go to the next one.
-            if (currParsimonyScore >= minParsimonyScore) {
+            if (currParsimonyScore >= smallestParsimonyScore) {
                 continue;
             }
             // Displays program finding optimal trait states
@@ -321,7 +318,7 @@ public class Parsimony {
     private static void changeTreeTraitsToMinPars(Species[] ancestorNodes) {
         for (int i = 0; i < ancestorNodes.length; i++) {
             int[] optimalTraits =
-                ancestorNodes[i].getPossibleTraitStates()[indexOfMinimumParsimonyTree[i]];
+                ancestorNodes[i].getPossibleTraitStates()[indicesOfAncestorsTraitStatesInMaximumParsimonyTree[i]];
             ancestorNodes[i].setTraits(optimalTraits);
         }
     }
@@ -332,7 +329,7 @@ public class Parsimony {
      * @return The parsimony score of the most parsimonious tree.
      */
     public static int getParsimonyScoreOfTree() {
-        return minParsimonyScore;
+        return smallestParsimonyScore;
     }
 
 }
