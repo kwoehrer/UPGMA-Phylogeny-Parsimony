@@ -29,15 +29,20 @@ The goal of this program is to generate the most parsiminious phylogenetic tree 
 			-Species not all having the same number of traits
 			-Not enough species are present (less than specified amount of species on first line of input file)
 			-Too many species are present(more than specified amount of species on first line of input file)
-	2. Run the MainMethod CLI(Command line interface)
-		a. Open CMD/command prompt
-		b. Change directory to the phylogeny folder
-		c. Use the command "java -jar phylogeneticTreeCLI.jar <inputFileName.txt>"
-		d. Follow prompts on the command line.
-		e. If there are a large number of traits/species, then it is recommended to just perform UPGMA tree creation and not to show parsimony.
+	2.Run the programs CLI(Command line interface)
+		a. Open your computers CMD/command prompt
+		b. Change your working directory to the a folder containing the -jar file
+		c. Use the following command: "java -jar phylogeneticTreeCLI.jar inputFileName.txt"
+		d. Follow prompts on the command line interface until the CLI displays that it has completed its work.
+
+		Please note: This program utilizes Java Version 11 and requires you to have Java Version 11 or a more recent version installed on your computer.
+ 		Also note that the program can take a very long time if you enter in a large amount of species with a large amount of traits.
+ 		It is suggested that complex trees only utilize the UPGMA tree generation of this program and elect not to show parsimony.
+		If you choose to display parsimony, please wait for the program to finish or your output.txt will not be created.
+
 	3. Access the outputFile.txt
-		a. Output file location will be shown on the last line of the CLI. You can access your file here.
-			-Default location is the Phylogeny folder
+		a. Access the outputFile.txt to see your generated phylogenetic tree.
+  			-File location will be shown on last line of the CLI, default location is the folder/directory you launched the jar from.
   
   
   
